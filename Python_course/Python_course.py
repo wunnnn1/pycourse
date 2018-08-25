@@ -1,38 +1,32 @@
 '''
-用户登录（三次机会）
-描述
-给用户三次输入用户名和密码的机会，要求如下：
-
-1）如输入第一行输入用户名为‘Kate’,第二行输入密码为‘666666’，输出‘登录成功！’，退出程序；
-
-2）当一共有3次输入用户名或密码不正确输出“3次用户名或者密码均有误！退出程序。”。
-
- 
-
-输入输出示例
- 
-
- 	输入	输出
-示例 1	
-Kate
-666666
-
-登录成功！
-示例 2	
-kate
-123
-alice
-456
-john
-111111
-3次用户名或者密码均有误！退出程序。
+数码管
 '''
-for i in range(3):
-    name=input()
-    passWord=input()
-    if name=="Kate"and passWord=="666666":
-        print("登录成功！")
-        break
-else:
-    print("3次用户名或者密码均有误！退出程序。")
-
+import turtle
+def drawLine(draw):
+    turtle.pendown()if draw else turtle.penup()
+    turtle.fd(40)
+    turtle.right(90)
+def drawDigit(digit):
+    drawLine(True) if digit in [2,3,4,5,6,7,8,9] else drawLine(False)
+    drawLine(True) if digit in [0,1,3,4,5,6,7,8,9] else drawLine(False)
+    drawLine(True) if digit in [0,2,3,5,6,8,9] else drawLine(False)
+    drawLine(True) if digit in [0,2,4,6,8] else drawLine(False)
+    turtle.left(90)
+    drawLine(True) if digit in [0,4,5,6,8,9] else drawLine(False)
+    drawLine(True) if digit in [0,2,3,5,6,7,8,9] else drawLine(False)
+    drawLine(True) if digit in [0,1,2,3,4,7,8,9] else drawLine(False)
+    turtle.left(180)
+    turtle.penup()
+    turtle.fd(20)
+def drawDate(date):
+    for i in date:
+        drawDigit(eval(i))
+def main():
+    turtle.setup(800,350,200,200)
+    turtle.penup()
+    turtle.fd(-300)
+    turtle.pensize(5)
+    drawDate('20181010')
+    turtle.hideturtle()
+    turtle.done()
+main()
