@@ -1,4 +1,5 @@
 #CalStatisticsV1.py
+#注意使用自带的函数
 def getNum():
     nums=[]
     iNumStr=input("请输入数字（回车退出）:")
