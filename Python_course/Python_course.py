@@ -1,30 +1,17 @@
-#CalStatisticsV1.py
-#注意使用自带的函数
-def getNum():
-    nums=[]
-    iNumStr=input("请输入数字（回车退出）:")
-    while iNumStr !="":
-        nums.append(eval(iNumStr))
-        iNumStr=input("请输入数字（回车退出）:")
-    return nums
-def mean(numbers):
-    s=0.0
-    for num in numbers:
-        s=s+num
-    return s/len(numbers)
-def dev(numbers,mean):
-    sdev=0.0
-    for num in numbers:
-        sdev=sdev+(num-mean)**2
-    return pow(sdev/(len(numbers)-1),0.5)
-def median(numbers):
-    sorted(numbers)
-    size=len(numbers)
-    if size % 2 == 0:
-        med=(numbers[size//2-1])+numbers[size//2]/2
-    else:
-        med=numbers[size//2]
-    return med
-n=getNum()
-m=mean(n)
-print("平均值：{}，方差:{:.2},中位数:{}.".format(m,dev(n,m),median(n)))
+#ClaHamletV1.py
+def getText():
+    txt=open("hamlet.txt","r").read()
+    txt=txt.lower()
+    for ch in '~!@#$%^&*()_-+={}[]:;,./<>?"\|':
+        txt=txt.replace(ch," ")
+    return txt
+hamletTxt=getText()
+words=hamletTxt.split()
+counts={}
+for word in words:
+    counts[word]=counts.get(word,0)+1
+items=list(counts.items())
+items.sort(key=lambda x:x[1],reverse=True)
+for i in range(10):
+    word,count=items[i]
+    print("{0:<10}{1:>5}".format(word,count))
