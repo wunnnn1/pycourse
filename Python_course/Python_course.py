@@ -1,22 +1,21 @@
-#CalThreeKingdomsV2.py
-import jieba
-txt =open("threekingdoms.txt","r",encoding='utf-8').read()
-exculdes={"将军","却说","荆州","二人","不可","不能","如此","这样"}
-words=jieba.lcut(txt)
-counts={}
-for word in words:
-    if len(word)==1:
-        continue
-    elif word=="诸葛亮"or word=="孔明曰":
-        rword="孔明"
+#自动化绘图，注意自动化思维
+import turtle as t
+t.title("自动轨迹绘制")
+t.setup(800,600,0,0)
+t.pencolor("red")
+t.pensize(5)
+#读取数据
+datals=[]
+f=open("data.txt")
+for line in f:
+    line=line.replace("\n","")
+    datals.append(list(map(eval,line.split(","))))
+f.close()
+#自动绘制
+for i in range (len(datals)):
+    t.pencolor(datals[i][3],datals[i][4],datals[i][5])
+    t.fd(datals[i][0])
+    if datals[i][1]:
+        t.right(datals[i][2])
     else:
-        rword=word
-    counts[rword]=counts.get(rword,0)+1
-for word in exculdes:
-    del counts[word]
-items=list(counts.items())
-items.sort(key=lambda x:x[1],reverse=True)
-for i in range(10):
-    word,count=items[i]
-    print("{0:<10}{1:>5}".format(word,count))
-    
+        t.left(datals[i][2])
