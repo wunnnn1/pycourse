@@ -22,6 +22,7 @@ result=[]#保存位置
 doc=Document("词汇注释 - 副本.docx")
 result=open("result.txt","wt")
 #遍历文本
+
 def Search (word):
 
     str1=""
@@ -36,8 +37,24 @@ def Search (word):
         str1="……没有找到"+word+"\n"
         result.write(str1)
         print(str1)
-
-Search("spheres")
+#列表单词
+datals=[]
+def getText():
+    txt=open("word.txt","r").read()
+    txt=txt.replace('\n', " ")
+    return txt
+def main():
+    tstt=getText()
+    datals=tstt.split()
+    for i in datals:
+        Search(i)
+    print(datals)
+main()
+#for lines in word:
+#    datals.append(lines)
+#word.close()
+#print(datals)
+#Search("spheres")
 
 
 
