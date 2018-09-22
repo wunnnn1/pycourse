@@ -16,12 +16,29 @@
 from docx import Document
 from docx.shared import Inches
 #定义全局变量
-word ="sphere"#目标词
+word ="sphere1"#目标词
 result=[]#保存位置
 #读取文件
 doc=Document("词汇注释 - 副本.docx")
+result=open("result.txt","wt")
 #遍历文本
-for i in doc.paragraphs:
+def Search (word):
+
+    str1=""
+    for word in [word,word[0:-2],word[0:-3]]:
+        for i in doc.paragraphs:
+            if i.text.find(word)==0:
+                str1=i.text[0:i.text.find("例")]+"\n"
+    if len(str1)>5:
+        result.write(str1)
+        print(str1)
+    else:
+        str1="……没有找到"+word+"\n"
+        result.write(str1)
+        print(str1)
+
+Search("spheres")
+
 
 
 #复制到结束点
