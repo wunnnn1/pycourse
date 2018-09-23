@@ -8,7 +8,6 @@
     5，句号转化为分节符 word
     5，删除没有”词汇注释“的段落，，程序
     4，黑体字前加换行，word
-    6，删除" 例 "
     7，检索，有则返回字符串，没有则返回单词加换行，程序
 
 '''
@@ -19,18 +18,28 @@ from docx.shared import Inches
 word ="sphere1"#目标词
 result=[]#保存位置
 #读取文件
-doc=Document("词汇注释 - 副本.docx")
 result=open("result.txt","wt")
+#--------------------------【5】清理函数，去掉无关段落 】------------------------------------------------------
+
+def qingli():
+    doc=Document('讲解.docx')
+    for p in doc.paragraphs:
+        if p.text.find("词汇注释")==-1:        
+            p.clear()
+            print (p.text)
+    doc.save("词汇注释.docx")
 #遍历文本
 
 def Search (word):
-
     str1=""
-    for word in [word,word[0:-2],word[0:-3]]:
+    doc=Document("词汇注释.docx")
+    for word1 in [word,word[0:-2],word[0:-3]]:
         for i in doc.paragraphs:
-            if i.text.find(word)==0:
+            if i.text.find(word1)!=-1:
                 str1=i.text[0:i.text.find("例")]+"\n"
     if len(str1)>5:
+        if str1.find('记')!=-1:
+            str1=str1.replace('记', "\n")
         result.write(str1)
         print(str1)
     else:
@@ -38,17 +47,17 @@ def Search (word):
         result.write(str1)
         print(str1)
 #列表单词
-datals=[]
 def getText():
     txt=open("word.txt","r").read()
     txt=txt.replace('\n', " ")
-    return txt
+    datals=txt.split()
+    return datals
 def main():
-    tstt=getText()
-    datals=tstt.split()
+    datals=getText()
     for i in datals:
         Search(i)
     print(datals)
+   # qingli()
 main()
 #for lines in word:
 #    datals.append(lines)
@@ -67,15 +76,7 @@ main()
 #        if r.bold:         #找黑体           
 #            print(r.text)
 
-#--------------------------【5】清理函数，去掉无关段落 】------------------------------------------------------
 
-def qingli():
-    doc=Document('讲解.docx')
-    for p in doc.paragraphs:
-        if p.text.find("词汇注释")==-1:        
-            p.clear()
-            print (p.text)
-    doc.save("词汇注释.docx")
 
 '''
 for p in doc.paragraphs:
