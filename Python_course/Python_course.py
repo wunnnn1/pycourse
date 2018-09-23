@@ -19,7 +19,7 @@ word ="sphere1"#目标词
 result=[]#保存位置
 #读取文件
 result=open("result.txt","wt")
-#--------------------------【5】清理函数，去掉无关段落 】------------------------------------------------------
+#--------------------------清理函数，去掉无关段落 】------------------------------------------------------
 
 def qingli():
     doc=Document('讲解.docx')
@@ -28,25 +28,27 @@ def qingli():
             p.clear()
             print (p.text)
     doc.save("词汇注释.docx")
-#遍历文本
+
+#--------------------------清理函数，去掉无关段落 】------------------------------------------------------
 
 def Search (word):
     str1=""
     doc=Document("词汇注释.docx")
-    for word1 in [word,word[0:-2],word[0:-3]]:
+    for word1 in [word,word[0:-2],word[0:-3],word[-4]]:
         for i in doc.paragraphs:
-            if i.text.find(word1)!=-1:
-                str1=i.text[0:i.text.find("例")]+"\n"
-    if len(str1)>5:
+            if i.text.startswith(word1)!=-1:
+                str1=i.text+"\n"
+                break
+    if len(str1)>1:
         if str1.find('记')!=-1:
             str1=str1.replace('记', "\n")
-        result.write(str1)
-        print(str1)
+        result.write(word+'\n'+str1)
+        print(word+'\n'+str1)
     else:
         str1="……没有找到"+word+"\n"
         result.write(str1)
         print(str1)
-#列表单词
+#获取要查的单词列表
 def getText():
     txt=open("word.txt","r").read()
     txt=txt.replace('\n', " ")
