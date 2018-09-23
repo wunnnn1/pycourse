@@ -14,6 +14,7 @@
 
 from docx import Document
 from docx.shared import Inches
+from fnmatch import fnmatch, fnmatchcase
 #定义全局变量
 word ="sphere1"#目标词
 result=[]#保存位置
@@ -48,6 +49,23 @@ def Search (word):
         str1="……没有找到"+word+"\n"
         result.write(str1)
         print(str1)
+#--------------------------清理函数，去掉无关段落 】------------------------------------------------------
+
+def startSearch (word):
+    str1=""
+    doc=Document("词汇注释.docx")
+    for word1 in [word,word[0:-1],word[0:-2],word[0:-3]]:
+        for i in doc.paragraphs:
+            if fnmatch(i.text, word1+'*'):              
+                str1=i.text+"\n" 
+                break              
+    if len(str1)>1:
+        result.write(word+'\n'+str1)
+        print(word+'\n'+str1)
+    else:
+        str1="……"+word+"\n"
+        result.write(str1)
+        print(str1)
 #获取要查的单词列表
 def getText():
     txt=open("word.txt","r").read()
@@ -55,9 +73,10 @@ def getText():
     datals=txt.split()
     return datals
 def main():
+
     datals=getText()
     for i in datals:
-        Search(i)
+        startSearch(i)
     print(datals)
    # qingli()
 main()
