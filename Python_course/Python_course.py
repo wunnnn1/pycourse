@@ -32,6 +32,7 @@ result=[]#结果
 def web_search(word):
     result=open("result.txt","at")
     str1='\n'+word
+
     try:
         #判断是否为特殊格式，比如2008-Text1
         if '20' in str1:
@@ -47,8 +48,12 @@ def web_search(word):
             for item in s:
                 if item.text:
                     str1=str1+'\t'+item.text
+            if len(str1)>150:
+                str1='\n'+word+"找不到\n"
     except Exception:
-        str1=str1+"error!是不是拼错了\n"    
+        if '\n'!= word:
+            str1=str1+"找不到\n"
+        
     print(str1)            
     result.write(str1)
     result.close()

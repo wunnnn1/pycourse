@@ -93,7 +93,6 @@ confronted
 affair
 stained
 prestige
-
 2009-Text1
 mindlessly
 auto-pilot
@@ -120,8 +119,6 @@ fosters
 commonness
 derives
 complies
-
-
 2009-Text2
 boost
 paternal
@@ -151,8 +148,6 @@ overlapping
 database
 Fors
 Againsts
-
-
 2009-Text3
 institution
 trained
@@ -177,7 +172,6 @@ construction
 workforces
 quotes
 prior
-
 2009-Text4
 thoroughly
 philosophy
@@ -213,7 +207,6 @@ obsessed
 sermons
 motivated
 illusory
-
 2010-Text1
 inexorable
 scope
@@ -240,7 +233,6 @@ retain
 elaborate
 Mournful
 Prominent
-
 2010¡ªtext2
 patents
 granted
@@ -279,9 +271,6 @@ complies
 hostility
 esteem
 incidence
-
-
-
 2010-Text3
 epidemics
 minority
@@ -307,8 +296,6 @@ tendency
 propagation
 validity
 inclination
-
-
 2010¡ªText4
 scenes
 moan
