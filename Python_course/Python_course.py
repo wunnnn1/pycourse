@@ -23,8 +23,6 @@
 
 import requests
 from bs4 import BeautifulSoup
-
-
 #定义全局变量
 result=[]#结果
 
