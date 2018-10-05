@@ -37,6 +37,7 @@ def web_search(word):
             str1+='-'*60
         else:                    
             # 利用GET获取输入单词的网页信息
+            
             r = requests.get(url='http://dict.youdao.com/w/%s/#keyfrom=dict2.top'%word)
             # 利用BeautifulSoup将获取到的文本解析成HTML
             soup = BeautifulSoup(r.text, "lxml")
@@ -48,9 +49,10 @@ def web_search(word):
                     str1=str1+'\t'+item.text
             if len(str1)>150:
                 str1='\n'+word+"找不到\n"
+           # print(item.text)
     except Exception:
         if '\n'!= word:
-            str1=str1+"找不到\n"
+            str1=str1+"1找不到\n"
         
     print(str1)            
     result.write(str1)
@@ -66,5 +68,6 @@ def main():
     datals=getText()
     for i in datals:
         web_search(i)
+
 
 main()
